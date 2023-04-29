@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sam</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111827">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.min.css">
+    <link rel="stylesheet" href="custom.css">
+    <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/uno.global.js"></script>
+  </head>
+
+  <body class="p-8 flex bg-gray-900 flex-col items-center justify-center w-full h-screen overflow-hidden">
+    <h1 id="title" class="text-5xl text-gray-300 font-bold mb-2 opacity-0" un-cloak>Hi, I'm Sam.</h1>
+    <p class="mt-2 text-xl text-center" un-cloak>
+      <span id="subtitle" class="text-gray-500"></span>
+      <span id="cursor" class="-ml-1 text-gray-100 font-bold blink"></span>
+    </p>
+    <footer id="footer" class="fixed bottom-8 w-full h-6 flex items-center justify-center gap-4 text-gray-800 opacity-0">
+      <a class="flex transition-colors text-gray-600 hover:text-gray-300 no-underline font-semibold"
+        href="https://github.com/smartinio" un-cloak>
+        Github
+      </a>
+
+      <a class="flex transition-colors text-gray-600 hover:text-gray-300 no-underline font-semibold"
+        href="https://linkedin.com/in/smrtn" un-cloak>
+        LinkedIn
+      </a>
+    </footer>
+
+    <script>
+      const chars = "A software engineer from Stockholm, Sweden.".split('');
+      const title = document.getElementById("title");
+      const subtitle = document.getElementById("subtitle");
+      const cursor = document.getElementById("cursor");
+      const footer = document.getElementById("footer");
+  
+      const reveal = (element) => {
+        element.classList.remove("opacity-0");
+        element.classList.add("transition-opacity");
+        element.classList.add("duration-1000");
+        element.classList.add("opacity-100");
+      }
+  
+      const typeSubtitle = () => {
+        subtitle.innerHTML += chars.shift();
+  
+        if (chars.length) { 
+          setTimeout(typeSubtitle, (1 + Math.floor(Math.random() * 2)) * 45);
+        } else {
+          cursor.classList.add("blink");
+        }
+      }
+  
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          reveal(title);
+          reveal(footer);
+        }, 300);
+    
+        setTimeout(() => {
+          cursor.innerHTML = "|";
+        }, 1300);
+    
+        setTimeout(() => {
+          cursor.classList.remove("blink");
+          typeSubtitle();
+        }, 2600);
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+[un-cloak] {
+  display: none;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: pulse 0.9s infinite;
+}
